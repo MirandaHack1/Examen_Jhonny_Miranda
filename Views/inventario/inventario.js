@@ -6,7 +6,10 @@ function init() {
   });
 }
 
-$(document).ready(() => {
+// $(document).ready(() => {
+//   todos();
+// });
+$().ready(() => {
   todos();
 });
 

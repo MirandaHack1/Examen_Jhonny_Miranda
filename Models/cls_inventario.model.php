@@ -49,7 +49,7 @@ class Clase_Inventario
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "UPDATE `inventario` SET ID_Provedores =$ID_Provedores, `Nombre_Producto`='$Nombre_Producto', `Cantidad`='$Cantidad', `Precio_Unitario`='$Precio_Unitario'  WHERE `ID_Producto `='$ID_Producto '";
+            $cadena = "UPDATE `inventario` SET  `ID_Provedores` ='$ID_Provedores', `Nombre_Producto`='$Nombre_Producto', `Cantidad`='$Cantidad', `Precio_Unitario`='$Precio_Unitario'  WHERE `ID_Producto`='$ID_Producto'";
             $result = mysqli_query($con, $cadena);
             return "ok";
         } catch (Throwable $th) {
