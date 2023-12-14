@@ -49,7 +49,7 @@
 
 
         <li class="sidebar-item">
-          <a class="sidebar-link" href="Usuarios/usuarios.php" target="base" aria-expanded="false">
+          <a class="sidebar-link" href="inventario/inventario.php" target="base" aria-expanded="false">
             <span>
               <i class="ti ti-package"></i>
             </span>

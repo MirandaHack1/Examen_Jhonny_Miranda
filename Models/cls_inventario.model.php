@@ -1,13 +1,13 @@
 <?php
 require_once('cls_conexion.model.php');
-class Clase_Provincias
+class Clase_Inventario
 {
     public function todos()
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "SELECT Provincias.ProvinciasId, Provincias.Nombre, Pais.Nombre as pais FROM `Provincias` inner JOIN Pais on Pais.PaisId = Provincias.PaisesId";
+            $cadena = "SELECT inventario.ID_Producto, inventario.ID_Provedores, inventario.Nombre_Producto, inventario.Cantidad, inventario.Precio_Unitario ,proveedores.Nombre as proveedores FROM `inventario` inner JOIN proveedores on proveedores.ID_Provedores  = inventario.ID_Provedores";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (Throwable $th) {
@@ -16,12 +16,12 @@ class Clase_Provincias
             $con->close();
         }
     }
-    public function uno($ProvinciasId)
+    public function uno($ID_Producto)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "SELECT * FROM `Provincias` WHERE ProvinciasId=$ProvinciasId";
+            $cadena = "SELECT * FROM `inventario` WHERE ID_Producto =$ID_Producto ";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (Throwable $th) {
@@ -30,12 +30,12 @@ class Clase_Provincias
             $con->close();
         }
     }
-    public function insertar($Nombre,$PaisesId)
+    public function insertar($ID_Provedores,$Nombre_Producto, $Cantidad, $Precio_Unitario)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "INSERT INTO `Provincias`(`Nombre`,PaisesId) VALUES ('$Nombre', $PaisesId)";
+            $cadena = "INSERT INTO `inventario`(`ID_Provedores`, `Nombre_Producto`, `Cantidad`, `Precio_Unitario`)VALUES ($ID_Provedores,'$Nombre_Producto', '$Cantidad','$Precio_Unitario')";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (Throwable $th) {
@@ -44,12 +44,12 @@ class Clase_Provincias
             $con->close();
         }
     }
-    public function actualizar($ProvinciasId, $PaisesId, $Nombre)
+    public function actualizar($ID_Producto , $ID_Provedores , $Nombre_Producto, $Cantidad, $Precio_Unitario)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "UPDATE `Provincias` SET `Nombre`='$Nombre', PaisesId=$PaisesId WHERE `ProvinciasId`='$ProvinciasId'";
+            $cadena = "UPDATE `inventario` SET ID_Provedores =$ID_Provedores, `Nombre_Producto`='$Nombre_Producto', `Cantidad`='$Cantidad', `Precio_Unitario`='$Precio_Unitario'  WHERE `ID_Producto `='$ID_Producto '";
             $result = mysqli_query($con, $cadena);
             return "ok";
         } catch (Throwable $th) {
@@ -58,12 +58,13 @@ class Clase_Provincias
             $con->close();
         }
     }
-    public function eliminar($ProvinciasId)
+    public function eliminar($ID_Producto )
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "delete from Provincias where ProvinciasId=$ProvinciasId";
+            $cadena = "DELETE  FROM `inventario` WHERE `ID_Producto`='$ID_Producto'"; 
+            // from inventario where ID_Producto =$ID_Producto ;
             $result = mysqli_query($con, $cadena);
             return "ok";
         } catch (Throwable $th) {
