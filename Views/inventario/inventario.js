@@ -36,33 +36,73 @@ var todos = () => {
   });
 };
 
+// var guardaryeditar = (e) => {
+//   e.preventDefault();
+//   var dato = new FormData($("#frm_inventario")[0]);
+//   var ruta = "";
+//   // var ID_Producto = $("#ID_Producto").val(); // Corregido: Usar jQuery para obtener el valor
+//   var ID_Producto = document.getElementById("ID_Producto").value;
+//   if (ID_Producto > 0) {
+//     ruta = "../../Controllers/inventario.controller.php?op=actualizar";
+//   } else {
+//     ruta = "../../Controllers/inventario.controller.php?op=insertar";
+//   }
+//   $.ajax({
+//     url: ruta,
+//     type: "POST",
+//     data: dato,
+//     contentType: false,
+//     processData: false,
+//     success: function (res) {
+//       res = JSON.parse(res);
+//       if (res === "ok") { // Corregido: Verificar la propiedad status
+//         Swal.fire("inventario", "Registrado con éxito", "success");
+//         todos();
+//         limpia_Cajas();
+//       } else {
+//         Swal.fire("inventario", "Error al guardar, inténtalo de nuevo más tarde", "error");
+//       }
+//     },
+//   });
+// };
+
 var guardaryeditar = (e) => {
   e.preventDefault();
   var dato = new FormData($("#frm_inventario")[0]);
   var ruta = "";
-  // var ID_Producto = $("#ID_Producto").val(); // Corregido: Usar jQuery para obtener el valor
   var ID_Producto = document.getElementById("ID_Producto").value;
+
   if (ID_Producto > 0) {
-    ruta = "../../Controllers/inventario.controller.php?op=actualizar";
+      ruta = "../../Controllers/inventario.controller.php?op=actualizar";
   } else {
-    ruta = "../../Controllers/inventario.controller.php?op=insertar";
+      ruta = "../../Controllers/inventario.controller.php?op=insertar";
   }
+
   $.ajax({
-    url: ruta,
-    type: "POST",
-    data: dato,
-    contentType: false,
-    processData: false,
-    success: function (res) {
-      res = JSON.parse(res);
-      if (res === "ok") { // Corregido: Verificar la propiedad status
-        Swal.fire("inventario", "Registrado con éxito", "success");
-        todos();
-        limpia_Cajas();
-      } else {
-        Swal.fire("inventario", "Error al guardar, inténtalo de nuevo más tarde", "error");
+      url: ruta,
+      type: "POST",
+      data: dato,
+      contentType: false,
+      processData: false,
+      success: function (res) {
+          try {
+              res = JSON.parse(res);
+              if (res === "ok") {
+                  Swal.fire("inventario", "Registrado con éxito", "success");
+                  todos();
+                  limpia_Cajas();
+              } else {
+                  Swal.fire("Error", res, "error"); // Mostrar mensaje de error al usuario
+              }
+          } catch (error) {
+              console.error("Error al parsear la respuesta del servidor:", error);
+              Swal.fire("Error", "Error inesperado, inténtalo de nuevo más tarde", "error");
+          }
+      },
+      error: function (xhr, status, error) {
+          console.error("Error en la solicitud AJAX:", error);
+          Swal.fire("Error", "Error inesperado, inténtalo de nuevo más tarde", "error");
       }
-    },
   });
 };
 

@@ -30,13 +30,39 @@ class Clase_Inventario
             $con->close();
         }
     }
-    public function insertar($ID_Provedores,$Nombre_Producto, $Cantidad, $Precio_Unitario)
+    // public function insertar($ID_Provedores,$Nombre_Producto, $Cantidad, $Precio_Unitario)
+    // {
+    //     try {
+    //         $con = new Clase_Conectar_Base_Datos();
+    //         $con = $con->ProcedimientoConectar();
+    //         $cadena = "INSERT INTO `inventario`(`ID_Provedores`, `Nombre_Producto`, `Cantidad`, `Precio_Unitario`)VALUES ($ID_Provedores,'$Nombre_Producto', '$Cantidad','$Precio_Unitario')";
+    //         $result = mysqli_query($con, $cadena);
+    //         return 'ok';
+    //     } catch (Throwable $th) {
+    //         return $th->getMessage();
+    //     } finally {
+    //         $con->close();
+    //     }
+    // }
+    public function insertar($ID_Provedores, $Nombre_Producto, $Cantidad, $Precio_Unitario)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "INSERT INTO `inventario`(`ID_Provedores`, `Nombre_Producto`, `Cantidad`, `Precio_Unitario`)VALUES ($ID_Provedores,'$Nombre_Producto', '$Cantidad','$Precio_Unitario')";
+
+            // Validar si el Nombre_Producto ya existe
+            $consulta_existencia = "SELECT COUNT(*) as total FROM `inventario` WHERE `Nombre_Producto` = '$Nombre_Producto'";
+            $resultado_existencia = mysqli_query($con, $consulta_existencia);
+            $total_existencia = mysqli_fetch_assoc($resultado_existencia)["total"];
+
+            if ($total_existencia > 0) {
+                return "Error: El producto '$Nombre_Producto' ya existe en la base de datos.";
+            }
+
+            // Si no existe, proceder con la inserción
+            $cadena = "INSERT INTO `inventario`(`ID_Provedores`, `Nombre_Producto`, `Cantidad`, `Precio_Unitario`) VALUES ($ID_Provedores,'$Nombre_Producto', '$Cantidad','$Precio_Unitario')";
             $result = mysqli_query($con, $cadena);
+
             return 'ok';
         } catch (Throwable $th) {
             return $th->getMessage();
@@ -44,7 +70,9 @@ class Clase_Inventario
             $con->close();
         }
     }
-    public function actualizar($ID_Producto , $ID_Provedores , $Nombre_Producto, $Cantidad, $Precio_Unitario)
+
+
+    public function actualizar($ID_Producto, $ID_Provedores, $Nombre_Producto, $Cantidad, $Precio_Unitario)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
@@ -58,12 +86,12 @@ class Clase_Inventario
             $con->close();
         }
     }
-    public function eliminar($ID_Producto )
+    public function eliminar($ID_Producto)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "DELETE  FROM `inventario` WHERE `ID_Producto`='$ID_Producto'"; 
+            $cadena = "DELETE  FROM `inventario` WHERE `ID_Producto`='$ID_Producto'";
             // from inventario where ID_Producto =$ID_Producto ;
             $result = mysqli_query($con, $cadena);
             return "ok";
@@ -73,7 +101,4 @@ class Clase_Inventario
             $con->close();
         }
     }
-
-
-
 }
