@@ -80,20 +80,35 @@
                             <option value="0">Seleccione un Provedor</option>
                         </select>
                     </div>
-
+                    <!-- 
                     <div class="form-group">
                         <label for="Nombre_Producto">Nombre Producto</label>
-                        <input type="text" required class="form-control" id="Nombre_Producto" name="Nombre_Producto" placeholder="Ingrese el Nombre Producto">
+                        <input type="text" required class="form-control" id="Nombre_Producto" name="Nombre_Producto" placeholder="Ingrese el Nombre Producto"  maxlength="25">
                     </div>
 
                     <div class="form-group">
                         <label for="Cantidad">Cantidad</label>
-                        <input type="text" required class="form-control" id="Cantidad" name="Cantidad" placeholder="Ingrese la Cantidad del Producto">
+                        <input type="text" required class="form-control" id="Cantidad" name="Cantidad" placeholder="Ingrese la Cantidad del Producto" maxlength="6">
                     </div>
 
                     <div class="form-group">
                         <label for="Precio_Unitario">Precio Unitario</label>
-                        <input type="text" required class="form-control" id="Precio_Unitario" name="Precio_Unitario" placeholder="Ingrese el Precio Unitario del Producto">
+                        <input type="text" required class="form-control" id="Precio_Unitario" name="Precio_Unitario" placeholder="Ingrese el Precio Unitario del Producto"  maxlength="6">
+                    </div> -->
+
+                    <div class="form-group">
+                        <label for="Nombre_Producto">Nombre Producto</label>
+                        <input type="text" required class="form-control" id="Nombre_Producto" name="Nombre_Producto" placeholder="Ingrese el Nombre Producto" maxlength="25" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+" title="Solo se permiten letras y espacios">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Cantidad">Cantidad</label>
+                        <input type="text" required class="form-control" id="Cantidad" name="Cantidad" placeholder="Ingrese la Cantidad del Producto" maxlength="6" pattern="[0-9]+" title="Solo se permiten números">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Precio_Unitario">Precio Unitario</label>
+                        <input type="text" required class="form-control" id="Precio_Unitario" name="Precio_Unitario" placeholder="Ingrese el Precio Unitario del Producto" maxlength="6" pattern="[0-9]+" title="Solo se permiten números">
                     </div>
 
                 </div>

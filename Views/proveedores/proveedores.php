@@ -60,7 +60,7 @@
                     <input type="hidden" name="ID_Provedores" id="ID_Provedores">
                     <div class="form-group">
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="Nombre">Nombre</label>
                             <input type="text" required class="form-control" id="Nombre" name="Nombre" placeholder="Nombre">
                         </div>
@@ -68,12 +68,34 @@
                         <div class="form-group">
                             <label for="Producto_Sumistrado">Producto Sumistrado</label>
                             <input type="text" required class="form-control" id="Producto_Sumistrado" name="Producto_Sumistrado" placeholder="Producto_Sumistrado">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="Nombre">Nombre</label>
+                            <input type="text" required class="form-control" id="Nombre" name="Nombre" placeholder="Nombre" pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+" title="Solo se permiten letras y espacios">
                         </div>
+
+                        <div class="form-group">
+                            <label for="Producto_Sumistrado">Producto Sumistrado</label>
+                            <input type="text" required class="form-control" id="Producto_Sumistrado" name="Producto_Sumistrado" placeholder="Producto_Sumistrado" pattern="[A-Za-z0-9\s]+" title="Solo se permiten letras, números y espacios">
+                        </div>
+
 
                         <div class="form-group">
                             <label for="Fecha_Inicio_Contrato">Fecha Contrato</label>
                             <input type="date" required class="form-control" id="Fecha_Inicio_Contrato" name="Fecha_Inicio_Contrato" placeholder="Fecha_Inicio_Contrato">
                         </div>
+
+                        <div class="form-group">
+                            <label for="Cedula">Cedula</label>
+                            <input type="text" onfocusout="algoritmo_cedula();cedula_repetida();" required class="form-control" id="Cedula" name="Cedula" placeholder="Cedula" pattern="[0-9]+" title="Solo se permiten números">
+                            <div class="alert alert-danger d-none" role="alert" id="errorCedula">
+                            </div>
+                            <div class="alert alert-danger d-none" role="alert" id="CedulaRepetida">
+                            </div>
+                        </div>
+
+
+                     
 
                         <!-- <div class="form-group">
                             <label for="Cedula">Cedula</label>
@@ -81,7 +103,7 @@
                         </div> -->
 
 
-
+                        <!-- 
                         <div class="form-group">
                             <label for="Cedula">Cedula</label>
                             <input type="text" onfocusout="algoritmo_cedula();cedula_repetida();" required class="form-control" id="Cedula" name="Cedula" placeholder="Cedula">
@@ -89,7 +111,7 @@
                             </div>
                             <div class="alert alert-danger d-none" role="alert" id="CedulaRepetida">
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <!-- <div class="form-group">
