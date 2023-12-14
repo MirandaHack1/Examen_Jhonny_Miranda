@@ -45,7 +45,7 @@ switch ($_GET["op"]) {
     case "cedula_repetida":
         $Cedula = $_POST["Cedula"];
         $datos = array(); //defino un arreglo
-        $datos = $usuarios->cedula_repetida($Cedula); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
+        $datos = $proveedores->cedula_repetida($Cedula); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
         $uno = mysqli_fetch_assoc($datos); //recorro el arreglo de datos
         echo json_encode($uno); //devuelvo el arreglo en formato json
         break;
