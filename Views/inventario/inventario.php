@@ -68,7 +68,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <input type="hidden" name="ID_Producto " id="ID_Producto ">
+                    <input type="hidden" name="ID_Producto" id="ID_Producto">
 
                     <!-- <div class="form-group">
                         <label for="nombre">Nombre de la Provincia</label>

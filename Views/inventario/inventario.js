@@ -37,8 +37,8 @@ var guardaryeditar = (e) => {
   e.preventDefault();
   var dato = new FormData($("#frm_inventario")[0]);
   var ruta = "";
-  var ID_Producto = $("#ID_Producto").val(); // Corregido: Usar jQuery para obtener el valor
-  
+  // var ID_Producto = $("#ID_Producto").val(); // Corregido: Usar jQuery para obtener el valor
+  var ID_Producto = document.getElementById("ID_Producto").value;
   if (ID_Producto > 0) {
     ruta = "../../Controllers/inventario.controller.php?op=actualizar";
   } else {
