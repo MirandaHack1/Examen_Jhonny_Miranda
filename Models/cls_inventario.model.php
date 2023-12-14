@@ -30,7 +30,7 @@ class Clase_Inventario
             $con->close();
         }
     }
-    public function insertar($ID_Provedores,$Nombre_Producto, $Cantidad, $Precio_Unitario)
+    public function insertar($ID_Provedores, $Nombre_Producto, $Cantidad, $Precio_Unitario)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
@@ -44,7 +44,7 @@ class Clase_Inventario
             $con->close();
         }
     }
-    public function actualizar($ID_Producto , $ID_Provedores , $Nombre_Producto, $Cantidad, $Precio_Unitario)
+    public function actualizar($ID_Producto, $ID_Provedores, $Nombre_Producto, $Cantidad, $Precio_Unitario)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
@@ -58,12 +58,12 @@ class Clase_Inventario
             $con->close();
         }
     }
-    public function eliminar($ID_Producto )
+    public function eliminar($ID_Producto)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "DELETE  FROM `inventario` WHERE `ID_Producto`='$ID_Producto'"; 
+            $cadena = "DELETE  FROM `inventario` WHERE `ID_Producto`='$ID_Producto'";
             // from inventario where ID_Producto =$ID_Producto ;
             $result = mysqli_query($con, $cadena);
             return "ok";
@@ -73,7 +73,43 @@ class Clase_Inventario
             $con->close();
         }
     }
+    // public function nombre_repetida($Nombre_Producto)
+    // {
+    //     try {
+    //         $con = new Clase_Conectar_Base_Datos();
+    //         $con = $con->ProcedimientoConectar();
+    //         $cadena = "SELECT count(*) as nombre_repetida FROM `inventario` WHERE `Nombre_Producto`= '$Nombre_Producto'";
+    //         $result = mysqli_query($con, $cadena);
+    //         return $result;
+    //     } catch (Throwable $th) {
+    //         return $th->getMessage();
+    //     } finally {
+    //         $con->close();
+    //     }
+    // }
 
 
+    // Dentro de cls_inventario.model.php
+    public function nombre_repetido($Nombre_Producto)
+    {
+        try {
+            $con = new Clase_Conectar_Base_Datos();
+            $con = $con->ProcedimientoConectar();
 
+            // Utiliza una consulta preparada para evitar la inyección SQL
+            $stmt = $con->prepare("SELECT COUNT(*) as nombre_repetido FROM `inventario` WHERE `Nombre_Producto` = ?");
+            $stmt->bind_param("s", $Nombre_Producto);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            // Devuelve el resultado como un arreglo asociativo
+            $row = $result->fetch_assoc();
+
+            return $row['nombre_repetido'];
+        } catch (Throwable $th) {
+            return $th->getMessage();
+        } finally {
+            $con->close();
+        }
+    }
 }

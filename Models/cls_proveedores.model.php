@@ -21,7 +21,7 @@ class Clase_proveedores
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "SELECT * FROM `proveedores` WHERE ID_Provedores =$ID_Provedores ";
+            $cadena = "SELECT * FROM `proveedores` WHERE `ID_Provedores`='$ID_Provedores'";
             $result = mysqli_query($con, $cadena);
             return $result;
         } catch (Throwable $th) {
@@ -49,7 +49,7 @@ class Clase_proveedores
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "UPDATE `proveedores` SET `Nombre`='$Nombre',`Producto_Sumistrado`='$Producto_Sumistrado',`Fecha_Inicio_Contrato`='$Fecha_Inicio_Contrato',`Cedula`='$Cedula' WHERE ID_Provedores =$ID_Provedores ";
+            $cadena = "UPDATE `proveedores` SET `Nombre`='$Nombre',`Producto_Sumistrado`='$Producto_Sumistrado',`Fecha_Inicio_Contrato`='$Fecha_Inicio_Contrato',`Cedula`='$Cedula' WHERE `ID_Provedores` ='$ID_Provedores'";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (Throwable $th) {
@@ -63,7 +63,7 @@ class Clase_proveedores
         try {
             $con = new Clase_Conectar_Base_Datos();
             $con = $con->ProcedimientoConectar();
-            $cadena = "DELETE FROM `proveedores` WHERE ID_Provedores =$ID_Provedores ";
+            $cadena = "DELETE FROM `proveedores` WHERE `ID_Provedores` = '$ID_Provedores'";
             $result = mysqli_query($con, $cadena);
             return 'ok';
         } catch (Throwable $th) {

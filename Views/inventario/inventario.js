@@ -36,17 +36,50 @@ var todos = () => {
   });
 };
 
+// var guardaryeditar = (e) => {
+//   e.preventDefault();
+//   var dato = new FormData($("#frm_inventario")[0]);
+//   var ruta = "";
+//   // var ID_Producto = $("#ID_Producto").val(); // Corregido: Usar jQuery para obtener el valor
+//   var ID_Producto = document.getElementById("ID_Producto").value;
+//   if (ID_Producto > 0) {
+//     ruta = "../../Controllers/inventario.controller.php?op=actualizar";
+//   } else {
+//     ruta = "../../Controllers/inventario.controller.php?op=insertar";
+//   }
+//   $.ajax({
+//     url: ruta,
+//     type: "POST",
+//     data: dato,
+//     contentType: false,
+//     processData: false,
+//     success: function (res) {
+//       res = JSON.parse(res);
+//       if (res === "ok") { // Corregido: Verificar la propiedad status
+//         Swal.fire("inventario", "Registrado con éxito", "success");
+//         todos();
+//         limpia_Cajas();
+//       } else {
+//         Swal.fire("inventario", "Error al guardar, inténtalo de nuevo más tarde", "error");
+//       }
+//     },
+//   });
+// };
+
+// ... VALEEEEE
+
 var guardaryeditar = (e) => {
   e.preventDefault();
   var dato = new FormData($("#frm_inventario")[0]);
   var ruta = "";
-  // var ID_Producto = $("#ID_Producto").val(); // Corregido: Usar jQuery para obtener el valor
   var ID_Producto = document.getElementById("ID_Producto").value;
+
   if (ID_Producto > 0) {
     ruta = "../../Controllers/inventario.controller.php?op=actualizar";
   } else {
     ruta = "../../Controllers/inventario.controller.php?op=insertar";
   }
+
   $.ajax({
     url: ruta,
     type: "POST",
@@ -55,16 +88,24 @@ var guardaryeditar = (e) => {
     processData: false,
     success: function (res) {
       res = JSON.parse(res);
-      if (res === "ok") { // Corregido: Verificar la propiedad status
-        Swal.fire("inventario", "Registrado con éxito", "success");
+
+      if (res.status === "success") {
+        // Éxito
+        Swal.fire("Éxito", "Operación realizada con éxito", "success");
         todos();
         limpia_Cajas();
       } else {
-        Swal.fire("inventario", "Error al guardar, inténtalo de nuevo más tarde", "error");
+        // Error
+        Swal.fire("Error", res.message, "error");
       }
     },
   });
 };
+
+// ...
+
+
+
 
 var cargaInventario = () => {
   return new Promise((resolve, reject) => {

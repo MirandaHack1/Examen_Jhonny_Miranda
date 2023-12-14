@@ -58,6 +58,7 @@ class proveedores_model {
         if (res === "ok") {
           Swal.fire("proveedores", "proveedores Registrado", "success");
           todos_controlador();
+      
         } else {
           Swal.fire("Error", res, "error");
         }
@@ -100,9 +101,8 @@ class proveedores_model {
         $("#Nombre").val(res.Nombre);
         $("#Producto_Sumistrado").val(res.Producto_Sumistrado);
         $("#Fecha_Inicio_Contrato").val(res.Fecha_Inicio_Contrato);
-
-
-        document.getElementById("Cedula ").value = res.Cedula; //asiganr al select el valor
+        // document.getElementById("Cedula").value = res.Cedula; //asiganr al select el valor
+        $("#Cedula").val(res.Cedula);
 
       }
     );
@@ -162,14 +162,14 @@ class proveedores_model {
       }
     });
 
-    this.limpia_Cajas();
+    limpia_Cajas();
   }
 
   limpia_Cajas() {
     document.getElementById("Nombre").value = "";
     document.getElementById("Producto_Sumistrado").value = "";
     document.getElementById("Fecha_Inicio_Contrato").value = "";
-    document.getElementById("Cedula ").value = "";
+    document.getElementById("Cedula").value = "";
     $("#ID_Provedores").val("");
 
     $("#Modal_proveedores").modal("hide");

@@ -58,7 +58,7 @@
         </li>
 
         <!-- MODIFICACION DE CODIGO  -->
-        <li class="sidebar-item">
+        <!-- <li class="sidebar-item">
           <a class="sidebar-link" href="paises/paises.php" target="base" aria-expanded="false">
             <span>
               <i class="ti ti-alert-circle"></i>
@@ -89,7 +89,7 @@
             </span>
             <span class="hide-menu">p4</span>
           </a>
-        </li>
+        </li> -->
 
 
       </ul>
