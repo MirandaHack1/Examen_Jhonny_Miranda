@@ -71,6 +71,8 @@
                         <div class="alert alert-danger d-none" role="alert" id="CedulaRepetida">
                         </div>
                     </div>
+
+                    
                     <div class="form-group">
                         <label for="nombre">Nombres</label>
                         <input type="text" required class="form-control" id="Nombres" name="Nombres" placeholder="Nombres">

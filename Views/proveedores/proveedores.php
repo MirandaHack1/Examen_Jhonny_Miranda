@@ -1,10 +1,5 @@
 <?php require_once('../html/head2.php') ?>
-
-
-
-
 <div class="row">
-
     <div class="col-lg-8 d-flex align-items-stretch">
         <div class="card w-100">
             <div class="card-body p-4">
@@ -50,12 +45,8 @@
         </div>
     </div>
 </div>
-
 <!-- Ventana Modal-->
-
 <!-- Button trigger modal -->
-
-
 <!-- Modal -->
 <div class="modal fade" id="Modal_proveedores" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -81,13 +72,25 @@
 
                         <div class="form-group">
                             <label for="Fecha_Inicio_Contrato">Fecha Contrato</label>
-                            <input type="text" required class="form-control" id="Fecha_Inicio_Contrato" name="Fecha_Inicio_Contrato" placeholder="Fecha_Inicio_Contrato">
+                            <input type="date" required class="form-control" id="Fecha_Inicio_Contrato" name="Fecha_Inicio_Contrato" placeholder="Fecha_Inicio_Contrato">
                         </div>
+
+                        <!-- <div class="form-group">
+                            <label for="Cedula">Cedula</label>
+                            <input type="text" required class="form-control" id="Cedula" name="Cedula" placeholder="Cedula">
+                        </div> -->
+
+
 
                         <div class="form-group">
                             <label for="Cedula">Cedula</label>
-                            <input type="text" required class="form-control" id="Cedula" name="Cedula" placeholder="Cedula">
+                            <input type="text" onfocusout="algoritmo_cedula();cedula_repetida();" required class="form-control" id="Cedula" name="Cedula" placeholder="Cedula">
+                            <div class="alert alert-danger d-none" role="alert" id="errorCedula">
+                            </div>
+                            <div class="alert alert-danger d-none" role="alert" id="CedulaRepetida">
+                            </div>
                         </div>
+
 
                         <!-- <div class="form-group">
                         <label for="estado">Estado</label>

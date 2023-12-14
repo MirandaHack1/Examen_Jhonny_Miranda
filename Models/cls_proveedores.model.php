@@ -16,7 +16,7 @@ class Clase_proveedores
             $con->close();
         }
     }
-    public function uno($ID_Provedores )
+    public function uno($ID_Provedores)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
@@ -30,7 +30,7 @@ class Clase_proveedores
             $con->close();
         }
     }
-    public function insertar($Nombre, $Producto_Sumistrado, $Fecha_Inicio_Contrato,$Cedula)
+    public function insertar($Nombre, $Producto_Sumistrado, $Fecha_Inicio_Contrato, $Cedula)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
@@ -44,7 +44,7 @@ class Clase_proveedores
             $con->close();
         }
     }
-    public function actualizar($ID_Provedores , $Nombre, $Producto_Sumistrado, $Fecha_Inicio_Contrato, $Cedula)
+    public function actualizar($ID_Provedores, $Nombre, $Producto_Sumistrado, $Fecha_Inicio_Contrato, $Cedula)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
@@ -58,7 +58,7 @@ class Clase_proveedores
             $con->close();
         }
     }
-    public function eliminar($ID_Provedores )
+    public function eliminar($ID_Provedores)
     {
         try {
             $con = new Clase_Conectar_Base_Datos();
@@ -66,6 +66,20 @@ class Clase_proveedores
             $cadena = "DELETE FROM `proveedores` WHERE ID_Provedores =$ID_Provedores ";
             $result = mysqli_query($con, $cadena);
             return 'ok';
+        } catch (Throwable $th) {
+            return $th->getMessage();
+        } finally {
+            $con->close();
+        }
+    }
+    public function cedula_repetida($cedula)
+    {
+        try {
+            $con = new Clase_Conectar_Base_Datos();
+            $con = $con->ProcedimientoConectar();
+            $cadena = "SELECT count(*) as cedula_repetida FROM `proveedores` WHERE `Cedula`= '$cedula'";
+            $result = mysqli_query($con, $cadena);
+            return $result;
         } catch (Throwable $th) {
             return $th->getMessage();
         } finally {

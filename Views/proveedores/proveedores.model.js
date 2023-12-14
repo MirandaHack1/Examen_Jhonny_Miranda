@@ -66,6 +66,27 @@ class proveedores_model {
     this.limpia_Cajas();
   }
 
+  cedula_repetida() {
+    var Cedula = this.Cedula;
+    $.post(
+      "../../Controllers/proveedores.controller.php?op=cedula_repetida",
+      { Cedula: Cedula },
+      (res) => {
+        res = JSON.parse(res);
+        if (parseInt(res.cedula_repetida) > 0) {
+          $("#CedulaRepetida").removeClass("d-none");
+          $("#CedulaRepetida").html(
+            "La cédua ingresa, ya exite en la base de datos"
+          );
+          $("button").prop("disabled", true);
+        } else {
+          $("#CedulaRepetida").addClass("d-none");
+          $("button").prop("disabled", false);
+        }
+      }
+    );
+  }
+
 
   uno() {
     var ID_Provedores = this.ID_Provedores;
